@@ -3,34 +3,36 @@
 
 let button = document.querySelector("button")
 
-let input = document.querySelector('#timeInterval');
-
 let interval;
 
-
-window.addEventListener("load", (event) => {
 button.addEventListener("click", function (event) {
     event.preventDefault();
-    event.target.value = "Start";
-    event.target.style.backgroundColor = "blue";
-    button.addEventListener("click", function (event) {
-        event.target.value = "Stop";
-        event.target.style.backgroundColor = "red";
+    let input = document.querySelector('#timeInterval');
+    if (button.innerHTML == "Start"){
+        button.innerHTML ="Stop";
+        button.className = "btn btn-danger btn-sm";
+        interval = setInterval(() =>{
+            let x = Math.floor(Math.random() * 256);
+            let y = Math.floor(Math.random() * 256);
+            let z = Math.floor(Math.random() * 256);
+            let bgColor = "rgb(" + x + "," + y + "," + z + ")";
+            document.body.style.background = bgColor;
+        }, input.value * 1000);
+        input.disabled = true;        
+    }
+    else {
+        button.innerHTML = "Start";
+        button.className = "btn btn-primary btn-sm";
         clearInterval(interval);
         interval = null;
-    });
-    interval = setInterval(generate_random_color(), input.value);
-});
-});
+        document.body.style.background = "white";
+        input.disabled =  false;
+       
+    } 
+   });
 
 
-function generate_random_color() {
-    let x = Math.floor(Math.random() * 256);
-    let y = Math.floor(Math.random() * 256);
-    let z = Math.floor(Math.random() * 256);
-    let bgColor = "rgb(" + x + "," + y + "," + z + ")";
-    document.body.style.background = bgColor;
-}
+
 
 
 
