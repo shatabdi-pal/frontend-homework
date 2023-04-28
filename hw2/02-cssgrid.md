@@ -17,8 +17,8 @@
 14. grid-column: 2 / span 1;
     grid-row: 5 / span 1;
 
-15. grid-column: 2 / span 6;
-    grid-row: 1 / span 6;
+15. grid-column: span 4 / 6;
+    grid-row: span 5 / 6;
 
 16. grid-area: 1 / 2 / 4 / 6;
 17. grid-area: 2 / 3 / 5 / 6;
