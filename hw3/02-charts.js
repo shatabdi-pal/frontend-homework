@@ -63,7 +63,7 @@ const borderColors = [
 const url = 'https://thronesapi.com/api/v2/Characters';
 let groupedValue = [];
 let groupedKey = [];
-let groupedCharacter;
+let groupedFamily;
 
 
 
@@ -118,12 +118,15 @@ const fetchAllCharacters = async (url) =>{
        else if (family === "House Targaryen" || family ===  "Targaryan"){
         family =  "House Targaryen";
        }
+       else if (family === "House Baratheon" || family === "Baratheon") {
+      family = "House Baratheon";
+    }
 
           return family;
  
          });
         
-        let groupedFamily= groupByFamily(correctedFamily);
+        groupedFamily= groupByFamily(correctedFamily);
         Object.values(groupedFamily).forEach(value => {
           groupedValue.push(value)
         });
@@ -156,11 +159,13 @@ const renderChart = () => {
   new Chart(donutChart, {
     type: 'doughnut',
     data: {
-     labels: ['House Targaryen', 'House Tarly', 'House Stark', 'House Baratheon', 'House Lannister', 'House Greyjoy', 'House Clegane', 'House Baelish', 'House Seaworth', 'Unknown', 'House Tyrell', 'Free Folk', 'Tarth', 'Naathi', 'None', 'Bolton', 'Naharis', 'Lorathi', 'Baratheon', 'Mormont', 'Sparrow', 'Viper', 'Sand', 'Worm', 'Tyrell', 'Qyburn', 'Bronn'],
-      datasets: [
+       labels: ['House Targaryen', 'House Tarly', 'House Stark', 'House Baratheon', 'House Lannister', 'House Greyjoy', 'House Clegane', 'House Baelish', 'House Seaworth', 'Unknown', 'House Tyrell', 'Free Folk', 'Tarth', 'Naathi', 'None', 'Bolton', 'Naharis', 'Lorathi', 'Mormont', 'Sparrow', 'Viper', 'Sand', 'Worm', 'Tyrell', 'Qyburn', 'Bronn'],
+      //labels: Object.key(groupedFamily),
+     datasets: [
         {
           label: "Family",
-          data: [3, 1, 10, 2, 5, 3, 1, 1, 1, 3, 1, 2, 1, 1, 1, 2, 1, 2, 3, 2, 1, 1, 1, 1, 1, 1, 1],
+          data: [3, 1, 10, 2, 5, 3, 1, 1, 1, 3, 1, 2, 1, 1, 1, 2, 1, 2, 3, 2, 1, 1, 1, 1, 1, 1],
+          //data:  Object.values(groupedFamily),
           backgroundColor: backgroundColors,
           borderColor: borderColors,
           borderWidth: 1,
