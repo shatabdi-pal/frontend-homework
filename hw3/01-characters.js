@@ -6,6 +6,7 @@ const section = document.querySelector('section');
 
 const addCharactersToDOM = (character) =>{
     let figure = document.createElement('figure');
+    let div = document.createElement('div')
     let image = document.createElement('img');
     let figCaption = document.createElement('figcaption');
     figure.setAttribute('class', 'fig');
@@ -22,14 +23,29 @@ const addCharactersToDOM = (character) =>{
     figCaption.append(fullName);
     figCaption.append(title);
     figure.append(figCaption);
-    section.append(figure);
-
+    div.append(figure)
+    section.append(div);
+    //section.append(figure);
+    div.style.margin = '20px';
     figure.style.margin = '20px'
     section.style.display = 'flex';
     section.style.flexDirection = 'row';
     section.style.flexWrap= 'wrap';
     section.style.alignItems = 'flex-start';
     section.style.margin = '20px';
+    div.addEventListener(
+        "mouseover",
+        (event) => {
+          // highlight the mouseover target
+          event.target.style.background = "white";
+      
+          // reset the color after a short delay
+          setTimeout(() => {
+            event.target.style.background= "";
+          }, 500);
+        },
+        false
+      );
     
 }
 
